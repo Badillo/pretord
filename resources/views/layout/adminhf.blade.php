@@ -4,7 +4,7 @@
 <!--Header-->
 <div class="header-top">
     <div class="logo">
-        <img src="{{ URL::to("images/logo2.png") }}" alt="Logo Pretord">
+        <img src="{{ URL::to("images/logo.png") }}" alt="Logo Pretord">
     </div>
     <div class="clearfix"> </div>
 </div>

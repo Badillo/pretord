@@ -50,9 +50,9 @@ class CompanyController extends Controller
         {
             if($request->file('logo')->isValid())
             {
-                $company->logo       = 'img/page/' . $request->file('logo')->getClientOriginalName();
+                $company->logo       = 'img/page/logo.png';
                 $company_logo = $request->file('logo');
-                $company_logo->move('img/page', $company_logo->getClientOriginalName());
+                $company_logo->move('img/page', 'logo.png');
             }
         } 
         $company->save();
