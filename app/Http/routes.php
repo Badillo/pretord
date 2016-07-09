@@ -11,13 +11,14 @@
 |
 */
 
-Route::get('/', ['uses' => 'CompanyController@index']);
-
-Route::get('/admin/login', function(){
-		return view('login');
+//Route::get('/', ['uses' => 'CompanyController@index']);
+Route::group(['middleware' => 'guest'], function(){
+		Route::get('/admin/login', function(){
+			return view('login');
+		});
 	});
 
-Route::group(['prefix' => 'admin'/*, 'middleware' => 'auth'*/], function(){
+Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
 
 	Route::get('index', ['uses' => 'CompanyController@index']);
 	Route::post('store', ['uses' => 'CompanyController@store']);
@@ -36,13 +37,6 @@ Route::group(['prefix' => 'admin'/*, 'middleware' => 'auth'*/], function(){
 		Route::post('delete', ['uses' => 'CollectionController@delete']);
 	});
 
-	Route::group(['prefix' => 'customers'], function(){
-		Route::post('store', ['uses' => 'CustomersController@store']);
-		Route::post('delete', ['uses' => 'CustomersController@delete']);
-		Route::get('create', ['uses' => 'CustomersController@create']);
-		Route::post('change', ['uses' => 'CustomersController@changeStatus']);
-	});
-
 	Route::group(['prefix' => 'products'], function(){
 		Route::get('index', ['uses' => 'ProductController@index']);
 		Route::post('store', ['uses' => 'ProductController@store']);
@@ -51,13 +45,19 @@ Route::group(['prefix' => 'admin'/*, 'middleware' => 'auth'*/], function(){
 	});
 
 	/*
+	Route::group(['prefix' => 'customers'], function(){
+		Route::post('store', ['uses' => 'CustomersController@store']);
+		Route::post('delete', ['uses' => 'CustomersController@delete']);
+		Route::get('create', ['uses' => 'CustomersController@create']);
+		Route::post('change', ['uses' => 'CustomersController@changeStatus']);
+	});
+
 	Route::group(['prefix' => 'types'], function(){
 		Route::get('index', ['uses' => 'TypeController@index']);
 		Route::post('store', ['uses' => 'TypeController@store']);
 		Route::post('edit', ['uses' => 'TypeController@edit']);
 		Route::post('delete', ['uses' => 'TypeController@delete']);
 	});
-	*/
 
 	Route::group(['prefix' => 'users'], function(){
 		Route::post('store', ['uses' => 'UserController@store']);
@@ -65,6 +65,7 @@ Route::group(['prefix' => 'admin'/*, 'middleware' => 'auth'*/], function(){
 		Route::get('create', ['uses' => 'UserController@create']);
 		Route::post('change', ['uses' => 'UserController@changeStatus']);
 	});
+	*/
 
 });
 
