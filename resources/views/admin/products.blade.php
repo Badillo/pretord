@@ -41,7 +41,7 @@
             <img width="300" src="" alt="Logo">
             <input type="file" name="image" id="image">
             <br><br>
-            <input type="submit" id="add_product" value="Agregar producto">
+            <button id="add_product">Agregar producto</button>
         </form>
     </div>
     <br><br>
