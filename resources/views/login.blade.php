@@ -5,16 +5,17 @@
 	<div class="account-in">
 		<h2>Inicio de sesión</h2>
 		<div class="col-md-6 account-top">
-			<form>
+			<form action="{{ URL::to('auth/login') }}" method="post">
+				<input type="hidden" name="_token" id="_token" value="{{ csrf_token() }}">
 				<div> 	
 					<span>Usuario</span>
-					<input type="text"> 
+					<input type="text" name="user"> 
 				</div>
 				<div> 
 					<span  class="pass">Contraseña</span>
-					<input type="password">
+					<input type="password" name="password">
 				</div>				
-					<input type="submit" value="Iniciar Sesión"> 
+				<input type="submit" value="Iniciar Sesión"> 
 			</form>
 		</div>
 	</div>	

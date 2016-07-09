@@ -7,6 +7,8 @@ use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use Illuminate\Http\Request;
+use Auth;
 
 class AuthController extends Controller
 {
@@ -61,5 +63,27 @@ class AuthController extends Controller
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
+    }
+
+    public function postLogin(Request $request)
+    {
+        //$request->session()->flush();
+
+        if (Auth::attempt(['user' => $request->input('user'), 'password' => $request->input('password')])) {
+            // Authentication passed...
+            $user = Auth::user();
+        
+            return redirect('/admin/index');
+        }   
+        return redirect('/admin/login');
+    }
+
+    public function getLogout(Request $request)
+    {
+        $request->session()->flush();
+        Auth::logout();
+        
+
+        return redirect('/admin/login');
     }
 }

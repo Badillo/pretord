@@ -14,9 +14,9 @@
         <li><a href="{{ URL::to('admin/products/index') }}">Productos</a></li>
         <li><a href="{{ URL::to('admin/categories/index') }}">Categorias</a></li>
         <li><a href="{{ URL::to('admin/collections/index') }}">Colecciones</a></li>
-        <li><a href="{{ URL::to('admin/customers/index') }}">Clientes</a></li>
+        <!--<li><a href="{{ URL::to('admin/customers/index') }}">Clientes</a></li>-->
         <!--<li><a href="{{ URL::to('admin/types/index') }}">Tipos</a></li>-->
-<!--        <li><a href="{{ URL::to('admin/users/index') }}">Usuarios</a></li>-->
+        <!--<li><a href="{{ URL::to('admin/users/index') }}">Usuarios</a></li>-->
         <li><a href="{{ URL::to('auth/logout') }}">Cerrar sesión</a></li>
     </ul>
     <div class="clearfix"></div>
