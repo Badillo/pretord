@@ -271,11 +271,8 @@ $(function() {
 		        processData: false,
 		        statusCode: {
 					200: function(response) {
-			
 						$("#products-table").empty();
-console.log('Ya borro');
 	                    $("#products-table").html(construct_products_table(response.products));
-console.log('Ya pinto');
 
                         $('#name').val('');
                         $('#description').val('');
@@ -367,14 +364,6 @@ console.log('Ya pinto');
                         $("#products-table").empty();
                         $("#products-table").html(construct_products_table(response.products));
 
-                            
-
-
-
-
-
-
-
                         $('#edit_id').val('');
                         $('#edit_name').val('');
                         $('#edit_description').val('');
@@ -394,8 +383,6 @@ console.log('Ya pinto');
             alert('Debes ingresar un nombre y descripción');    
         }
     });
-
-    
 
     $("#products-table").on('click', '.delete_product', function() {
         var id = $(this).data('id');
