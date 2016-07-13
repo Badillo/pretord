@@ -234,7 +234,8 @@ $(function() {
     }
 
     /********* Products Methods ***********/
-    $('#add_product').on('click', function() {
+    $('#add_product').on('click', function(e) {
+        e.preventDefault();
 		var name        = $('#name').val();
 		var description = $('#description').val();
 		var price       = $('#price').val();
@@ -270,26 +271,28 @@ $(function() {
 		        processData: false,
 		        statusCode: {
 					200: function(response) {
-						/*
+						
 						$("#products-table").empty();
-	                    $("#products-table").html(construct_collections_table(response.products));*/
-	                    console.log('Listo');
+	                    $("#products-table").html(construct_products_table(response.products));
+
+                        $('#name').val('');
+                        $('#description').val('');
+                        $('#price').val(0);
+                        $('#isOffer').prop( "checked", false );
+                        $('#isDuo').prop( "checked", false );
+                        $('#category').val(1);
+                        $('#collection').val(1);
 					}
 				}
 
 	            
 	        });
-
-	        return true;
     	}
-
-        alert('Debes ingresar un nombre y descripción');
-        return false;
+        else
+        {
+            alert('Debes ingresar un nombre y descripción');    
+        }
     });
-
-
-
-
 
     $("#products-table").on('click', '.edit_product', function() {
         var id = $(this).data('id');
@@ -304,6 +307,7 @@ $(function() {
 		var category    = $('#product_data_' + id).data('category');
 		var collection  = $('#product_data_' + id).data('collection');
         
+        $('#edit_id').val(id);
         $('#edit_name').val(name);
 		$('#edit_description').val(description);
 		$('#edit_price').val(price);
@@ -318,47 +322,85 @@ $(function() {
     });
 
 
-    $('#edit_product').on('click', function() {
-        var name = $('#edit_name').val();;
+    $('#edit_product').on('click', function(e) {
+        e.preventDefault();
+        var id          = $('#edit_id').val();
+        var name        = $('#edit_name').val();
+        var description = $('#edit_description').val();
+        var price       = $('#edit_price').val();
+        var image       = $('#edit_image').prop('files')[0];
+        var isOffer     = ($('#edit_isOffer').prop( "checked" ) ? 1 : 0);
+        var isDuo       = ($('#edit_isDuo').prop( "checked" ) ? 1 : 0);
+        var type        = $('#edit_type_product').val();
+        var category    = $('#edit_category_product').val();
+        var collection  = $('#edit_collection_product').val();
+        var _token      = $('#_token').val();
 
-        if (name != '') {
-            var id = $('#edit_id').val();
-            var _token = $('#_token').val();
+        if (name != '' && description != '') {
+            var formData    = new FormData();
+
+            formData.append('id',id);
+            formData.append('name',name);
+            formData.append('description',description);
+            formData.append('price',price);
+            formData.append('image',image);
+            formData.append('isOffer',isOffer);
+            formData.append('isDuo',isDuo);
+            formData.append('type',type);
+            formData.append('category',category);
+            formData.append('collection',collection);
+            formData.append('_token',_token);        
 
             $.ajax({
                 url: main_path + '/admin/products/edit',
                 type: 'post',
-                data: {
-                    id: id,
-                    name: name,
-                    _token: _token
-                },
-                dataType: 'json',
+                data: formData,
+                dataType:'json',
+                cache: false,
+                contentType: false,
+                processData: false,
                 statusCode: {
                     200: function(response) {
-                        $('#edit_name').val('');
-                        $('#edit_id').val('');
-
+                        
                         $("#products-table").empty();
                         $("#products-table").html(construct_products_table(response.products));
+
+                            
+
+
+
+
+
+
+
+                        $('#edit_id').val('');
+                        $('#edit_name').val('');
+                        $('#edit_description').val('');
+                        $('#edit_price').val(0);
+                        $('#edit_isOffer').prop( "checked", false );
+                        $('#edit_isDuo').prop( "checked", false );
+                        $('#edit_category_product').val(1);
+                        $('#edit_collection_product').val(1);
                     }
                 }
-            });
-            return true;
-        }
 
-        alert('Debes escribir la colección a editar');
-        return false;
+                
+            });
+        }
+        else
+        {
+            alert('Debes ingresar un nombre y descripción');    
+        }
     });
 
     
 
     $("#products-table").on('click', '.delete_product', function() {
         var id = $(this).data('id');
-        var name = $('#product_name_' + id).html();
+        var name = $('#product_data_' + id).data('name');
         var _token = $('#_token').val();
 
-        if (confirm('¿Desea eliminar la colección "' + name + '"?')) {
+        if (confirm('¿Desea eliminar el producto "' + name + '"?')) {
             $.ajax({
                 url: main_path + '/admin/products/delete',
                 type: 'post',
@@ -369,15 +411,13 @@ $(function() {
                 dataType: 'json',
                 statusCode: {
                     200: function(response) {
+                        console.log(response.products);
                         $("#products-table").empty();
                         $("#products-table").html(construct_products_table(response.products));
                     }
                 }
             });
-            return true;
         }
-
-        return false;
     });
 
     function construct_products_table(products) {
@@ -385,14 +425,54 @@ $(function() {
 
         $.each(products, function(i, product) {
             products_table += '<tr>' +
-                '<td id="product_name_' + product.id + '">' + product.name + '</td>' +
-                '<td class="text-center">' +
-                '<div class="btn-group btn-group-xs">' +
-                '<a data-id="' + product.id + '" class="btn btn-xs btn-default edit_product" data-original-title="Editar">Editar</a>' +
-                '<a data-id="' + product.id + '" title="Eliminar" class="btn btn-danger delete_product">X</a>' +
-                '</div>' +
-                '</td>' +
-                '</tr>';
+                        '<td>' + product.name + '</td>' +
+                        '<td>' + product.description + '</td>' +
+                        '<td>' + product.price + '</td>' +
+                        '<td><img width="150" src="' + main_path + '/' + product.image + '" alt="Fotografia Producto"></td>' +
+                        '<td>';
+            if(product.isOffer)
+            {
+                products_table += 'Si';
+            }
+            else
+            {
+                products_table += 'No';
+            }
+
+            products_table += '</td>' +
+                        '<td>';
+            if(product.isDuo)
+            {
+                products_table += 'Si';
+            }
+            else
+            {
+                products_table += 'No';
+            }
+
+            products_table += '</td>' +
+                        '<td>' + product.type.name + '</td>' +
+                        '<td>' + product.category.name + '</td>' +
+                        '<td>' + product.collection.name + '</td>' +
+                        '<td class="text-center">' +
+                            '<div class="btn-group btn-group-xs">' +
+                                '<a data-id="' + product.id + '" class="btn btn-xs btn-default edit_product" data-original-title="Editar">Editar</a>' +
+                                '<a data-id="' + product.id + '" title="Eliminar" class="btn btn-danger delete_product">X</a>' +
+                            '</div>' +
+                        '</td>' +
+                        '<input type="hidden" name="product_data_' + product.id + '" id="product_data_' + product.id + '" ' +
+                            'data-id="' + product.id + '"' +
+                            'data-name="' + product.name + '"' +
+                            'data-description="' + product.description + '"' +
+                            'data-price="' + product.price + '"' +
+                            'data-image="' + product.image + '"' +
+                            'data-isoffer="' + product.isOffer + '"' +
+                            'data-isduo="' + product.isDuo + '"' +
+                            'data-type="' + product.type.id + '"' +
+                            'data-category="' + product.category.id + '"' +
+                            'data-collection="' + product.collection.id + '"' +
+                        '>' +
+                    '</tr>';
         });
 
         return products_table;

@@ -89,10 +89,10 @@ class ProductController extends Controller
      */
     public function delete(Request $request)
     {
-        $Product = Product::find($request->input('id'));
-        $Product->delete();
+        $product = Product::find($request->input('id'));
+        $product->delete();
 
-        $products = Product::all();
+        $products = Product::with('category', 'collection', 'type')->get();
 
         return response()->json(['products' => $products], 200);
     }
@@ -105,11 +105,28 @@ class ProductController extends Controller
      */
     public function edit(Request $request)
     {
-        $Product = Product::find($request->input('id'));
-        $Product->name = $request->input('name');
-        $Product->save();
+        $product                = Product::find($request->input('id'));
+        $product->name          = $request->input('name');
+        $product->description   = $request->input('description');
+        $product->price         = $request->input('price');
+        $product->isOffer       = $request->input('isOffer');
+        $product->isDuo         = $request->input('isDuo');
+        $product->type_id       = $request->input('type');
+        $product->category_id   = $request->input('category');
+        $product->collection_id = $request->input('collection');
+        
+        if($request->hasFile('image'))
+        {
+            if($request->file('image')->isValid())
+            {
+                $product->image = 'img/products/' . $request->file('image')->getClientOriginalName();
+                $product_image  = $request->file('image');
+                $product_image->move('img/products', $product_image->getClientOriginalName());
+            }
+        } 
+        $product->save();
 
-        $products = Product::all();
+        $products = Product::with('category', 'collection', 'type')->get();
 
         return response()->json(['products' => $products], 200);
     }
