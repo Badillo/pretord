@@ -114,6 +114,7 @@
         <br>
         <form>
             <input type="hidden" name="_token" id="_token" value="{{ csrf_token() }}">
+            <input type="hidden" name="edit_id" id="edit_id">
             <h4>Producto</h4>
             <input type="text" name="edit_name" id="edit_name" value="">
             <br><br>
@@ -148,7 +149,7 @@
             <img id="logo_image" width="300" src="" alt="Logo">
             <input type="file" name="edit_image" id="edit_image">
             <br><br>
-            <input type="submit" id="edit_product" value="Editar producto">
+            <button id="edit_product">Editar producto</button>
         </form>
     </div>
 </div>
