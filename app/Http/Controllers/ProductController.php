@@ -44,7 +44,6 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-return response()->json(['data' => $request->input('name')], 200);
         $product                = new Product();
         $product->name          = $request->input('name');
         $product->description   = $request->input('description');

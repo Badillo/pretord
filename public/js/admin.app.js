@@ -271,9 +271,11 @@ $(function() {
 		        processData: false,
 		        statusCode: {
 					200: function(response) {
-						
+			
 						$("#products-table").empty();
+console.log('Ya borro');
 	                    $("#products-table").html(construct_products_table(response.products));
+console.log('Ya pinto');
 
                         $('#name').val('');
                         $('#description').val('');
