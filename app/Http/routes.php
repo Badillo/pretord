@@ -11,7 +11,13 @@
 |
 */
 
-//Route::get('/', ['uses' => 'CompanyController@index']);
+Route::get('/', ['uses' => 'CompanyController@webpage']);
+Route::get('/membership', ['uses' => 'CompanyController@membership']);
+Route::get('/catalog', ['uses' => 'CompanyController@catalog']);
+Route::get('/register', ['uses' => 'CompanyController@register']);
+Route::get('/products/{collection_id?}', ['uses' => 'CompanyController@products']);
+Route::get('/productDetail/{product_id}', ['uses' => 'CompanyController@productDetail']);
+
 Route::group(['middleware' => 'guest'], function(){
 		Route::get('/admin/login', function(){
 			return view('login');

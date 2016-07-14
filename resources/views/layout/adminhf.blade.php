@@ -22,19 +22,13 @@
     <div class="clearfix"></div>
 </div>
 <div class="page">
-    <h6><a href="#">Pretord Fashion</a><b>|</b>MEXICO HACE MODA Únete a nuestro equipo de ventas EN LINEA, y se testigo de las sonrisas que ofrecen nuestros productos en todos territorios...</span></h6>
+    <h6><a href="#">{{ $company->name }}</a><b>|</b>{{ $company->description }}</span></h6>
 </div>
 <!--End Header-->
 @stop
 
 @section('footer')
-<!--Footer-->
-<div class="footer">
-    <p class="footer-class">© 2015 Mihstore All Rights Reserved | Template by <a href="http://w3layouts.com/" target="_blank">W3layouts</a> </p>
-    <a href="#home" class="scroll to-Top">  GO TO TOP!</a>
-    <div class="clearfix"> </div>
-</div>
-<!--End Footer-->
+
 @stop
 
 @section('styles')

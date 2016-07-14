@@ -6,6 +6,7 @@
         <title>Tienda PRETORD</title>
         {!! Html::style('css/bootstrap.css') !!}
         {!! Html::style('css/style.css') !!}
+        {!! Html::style('css/megamenu.css') !!}
         {!! Html::style('http://fonts.googleapis.com/css?family=Cabin:400,500,600,700') !!}
         @yield('styles')
     </head>
@@ -21,6 +22,9 @@
             var main_path = '{{ URL::to("/") }}';
         </script>
         {!! Html::script('js/jquery.min.js') !!}
+        {!! Html::script('js/megamenu.js') !!}
+        {!! Html::script('js/easing.js') !!}
+        {!! Html::script('js/camera.min.js') !!}
         @yield('scripts')
     </body>
 </html>

@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Company;
+use App\Product;
+use App\Collection;
+use App\Customer;
 
 class CompanyController extends Controller
 {
@@ -19,6 +22,63 @@ class CompanyController extends Controller
     {
         $company = Company::find(1);
         return view('admin.index', compact('company'));
+    }
+
+    public function webpage()
+    {
+        $company = Company::find(1);
+        $products = Product::all();
+        $cheapProducts = Product::where('isOffer', '=', 1)->get();
+        $collections = Collection::all();
+
+        //return response()->json(compact('company', 'cheapProducts', 'collections', 'products'), 200);
+
+        return view('webpage.index', compact('company', 'cheapProducts', 'collections', 'products'));   
+    }
+
+    public function membership()
+    {
+        $company = Company::find(1);
+        return view('webpage.membership', compact('company'));
+    }
+
+    public function catalog()
+    {
+        $company = Company::find(1);
+        return view('webpage.catalog', compact('company'));
+    }
+
+    public function register(Request $request)
+    {
+        $customer = new Customer();
+        $customer->name = $request->input('name');
+        $customer->email = $request->input('email');
+        $customer->telephone = $request->input('telephone');
+        $customer->isAffiliated = 0;
+
+        $customer->save();
+
+        return redirect('/catalog');
+    }
+
+    public function products($collection_id = 0)
+    {
+        $company = Company::find(1);
+        $products = [];
+        if($collection_id == 0)
+            $products = Product::all();
+        else
+            $products = Product::where('collection_id', '=', $collection_id)->get();
+
+        return view('webpage.products', compact('products', 'company'));
+    }
+
+    public function productDetail($product_id)
+    {
+        $company = Company::find(1);
+        $product = Product::find($product_id);
+
+        return view('webpage.product_detail', compact('product', 'company'));
     }
 
     /**
