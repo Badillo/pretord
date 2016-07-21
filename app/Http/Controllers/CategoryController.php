@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Category;
+use App\Company;
 
 class CategoryController extends Controller
 {
@@ -18,7 +19,9 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::all();
-        return view('admin.categories', compact('categories'));
+	$company    = Company::find(1);
+
+        return view('admin.categories', compact('categories', 'company'));
     }
 
     /**

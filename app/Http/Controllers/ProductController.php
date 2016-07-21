@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Product;
 use App\Category;
 use App\Collection;
+use App\Company;
 
 class ProductController extends Controller
 {
@@ -22,8 +23,9 @@ class ProductController extends Controller
         $products    = Product::with('category', 'collection', 'type')->get();
         $categories  = Category::all();
         $collections = Collection::all();
+	$company     = Company::find(1);
 
-        return view('admin.products', ['products' => $products, 'categories' => $categories, 'collections' => $collections]);
+        return view('admin.products', ['products' => $products, 'categories' => $categories, 'collections' => $collections, 'company' => $company]);
     }
 
     /**

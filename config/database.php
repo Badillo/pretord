@@ -54,10 +54,10 @@ return [
 
         'mysql' => [
             'driver'    => 'mysql',
-            'host'      => env('DB_HOST', 'localhost'),
-            'database'  => env('DB_DATABASE', 'pretord'),
-            'username'  => env('DB_USERNAME', 'root'),
-            'password'  => env('DB_PASSWORD', 'amidamaru'),
+            'host'      => env('DB_HOST', 'db634712055.db.1and1.com'),
+            'database'  => env('DB_DATABASE', 'db634712055'),
+            'username'  => env('DB_USERNAME', 'dbo634712055'),
+            'password'  => env('DB_PASSWORD', 'Pretorddb2016.'),
             'charset'   => 'utf8',
             'collation' => 'utf8_unicode_ci',
             'prefix'    => '',

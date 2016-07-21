@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Collection;
+use App\Company;
 
 class CollectionController extends Controller
 {
@@ -18,7 +19,9 @@ class CollectionController extends Controller
     public function index()
     {
         $collections = Collection::all();
-        return view('admin.collections', compact('collections'));
+	$company     = Company::find(1);
+
+        return view('admin.collections', compact('collections', 'company'));
     }
 
     /**
