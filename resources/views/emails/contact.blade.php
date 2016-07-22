@@ -6,7 +6,7 @@
 	<title></title>
 </head>
 <body>
-	<h2>Datos del Clientes</h2>
+	<h2>Datos del Cliente</h2>
 	<br>
 	<label>Nombre: {{ $name }}</label>
 	<br>
