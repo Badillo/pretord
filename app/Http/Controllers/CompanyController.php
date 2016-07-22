@@ -10,6 +10,7 @@ use App\Company;
 use App\Product;
 use App\Collection;
 use App\Customer;
+use Mail;
 
 class CompanyController extends Controller
 {
@@ -50,13 +51,20 @@ class CompanyController extends Controller
 
     public function register(Request $request)
     {
-        $customer = new Customer();
-        $customer->name = $request->input('name');
-        $customer->email = $request->input('email');
-        $customer->telephone = $request->input('telephone');
+        $customer               = new Customer();
+        $customer->name         = $request->input('name');
+        $customer->email        = $request->input('email');
+        $customer->telephone    = $request->input('telephone');
         $customer->isAffiliated = 0;
 
         $customer->save();
+        $data = ['name' => $request->input('name'), 'email' => $request->input('email'), 'telephone' => $request->input('telephone')];
+
+        Mail::send('emails.contact', $data, function($message)
+        {
+            $message->from('pretord@example.com', 'Tienda Pretord');
+            $message->to('badillo.oma@outlook.com');
+        });
 
         return redirect('/catalog');
     }

@@ -7,9 +7,9 @@
         <a href="{{ URL::to('/')}}"><img src="{{ URL::to("img/page/logo.png") }}" alt="Logo Pretord"></a>
     </div>
     <div class="header-top-on">
-        <ul class="social-in">
-            <li><a href="https://www.facebook.com/Calzado-Pretord-447486148713267" target="_blank"><i class="ic1"> </i></a></li>
-        </ul>
+        <a href="https://www.facebook.com/Calzado-Pretord-447486148713267" target="_blank">
+            <img width="70" src="{{ URL::to('img/bluehartfacebook.png') }}" alt="">
+        </a>
     </div>
     <div class="clearfix"> </div>
 </div>
