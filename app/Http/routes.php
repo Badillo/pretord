@@ -50,6 +50,12 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
 		Route::post('delete', ['uses' => 'ProductController@delete']);
 	});
 
+	Route::group(['prefix' => 'sliders'], function(){
+		Route::get('index', ['uses' => 'SliderController@index']);
+		Route::post('store', ['uses' => 'SliderController@store']);
+		Route::post('delete', ['uses' => 'SliderController@delete']);
+	});
+
 	/*
 	Route::group(['prefix' => 'customers'], function(){
 		Route::post('store', ['uses' => 'CustomersController@store']);

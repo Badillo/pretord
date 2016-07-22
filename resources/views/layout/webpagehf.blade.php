@@ -8,7 +8,7 @@
     </div>
     <div class="header-top-on">
         <a href="https://www.facebook.com/Calzado-Pretord-447486148713267" target="_blank">
-            <img width="70" src="{{ URL::to('img/bluehartfacebook.png') }}" alt="">
+            <img width="70" src="{{ URL::to('img/bluehartfacebook.gif') }}" alt="">
         </a>
     </div>
     <div class="clearfix"> </div>
