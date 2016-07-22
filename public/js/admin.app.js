@@ -467,5 +467,27 @@ $(function() {
         return products_table;
     }
 
-    
+    /********* Sliders Methods ***********/
+    $(".delete_image").on('click', function() {
+        var id = $(this).data('id');
+        var _token = $('#_token').val();
+
+        if (confirm('¿Desea eliminar la imagen?')) {
+            $.ajax({
+                url: main_path + '/admin/sliders/delete',
+                type: 'post',
+                data: {
+                    id: id,
+                    _token: _token
+                },
+                dataType: 'json',
+                statusCode: {
+                    200: function(response) {
+                        window.location = main_path + '/admin/sliders/index';
+                    }
+                }
+            });
+        }
+    });
+
 });

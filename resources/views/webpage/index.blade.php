@@ -4,9 +4,9 @@
 <div class="col-md-9">
     <div class="fluid_container">
         <div class="camera_wrap camera_azure_skin" id="photo_slider_1">
-        @foreach ($products as $product)
-            @if ($product->image != '')
-                <div data-src="{{ URL::to( $product->image ) }}"></div>    
+        @foreach ($sliders as $slider)
+            @if ($slider->image != '')
+                <div data-src="{{ URL::to( $slider->image ) }}" data-thumb="{{ URL::to( $slider->thumbnail ) }}"></div>
             @endif
         @endforeach
         </div>
@@ -84,7 +84,7 @@
         $(".megamenu").megamenu();
 
         $('#photo_slider_1').camera({
-                thumbnails: false
+                thumbnails: true
             });
     });
 </script>

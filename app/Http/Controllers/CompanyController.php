@@ -10,6 +10,7 @@ use App\Company;
 use App\Product;
 use App\Collection;
 use App\Customer;
+use App\Slider;
 use Mail;
 
 class CompanyController extends Controller
@@ -22,6 +23,7 @@ class CompanyController extends Controller
     public function index()
     {
         $company = Company::find(1);
+
         return view('admin.index', compact('company'));
     }
 
@@ -31,10 +33,11 @@ class CompanyController extends Controller
         $products = Product::all();
         $cheapProducts = Product::where('isOffer', '=', 1)->get();
         $collections = Collection::all();
+        $sliders = Slider::all();
 
         //return response()->json(compact('company', 'cheapProducts', 'collections', 'products'), 200);
 
-        return view('webpage.index', compact('company', 'cheapProducts', 'collections', 'products'));   
+        return view('webpage.index', compact('company', 'cheapProducts', 'collections', 'products', 'sliders'));   
     }
 
     public function membership()

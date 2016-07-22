@@ -68,18 +68,14 @@ class SliderController extends Controller
                 $slider->save();
             }
         } 
-
         return redirect('admin/sliders/index');
     }
 
     public function delete(Request $request)
     {
-        $product = Product::find($request->input('id'));
-        $product->delete();
-
-        $products = Product::with('category', 'collection', 'type')->get();
-
-        return response()->json(['products' => $products], 200);
+        $slider = Slider::find($request->input('id'));
+        $slider->delete();
+        return redirect('admin/sliders/index');
     }
 
     /**
