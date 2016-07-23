@@ -66,8 +66,8 @@ class CompanyController extends Controller
         Mail::send('emails.contact', $data, function($message)
         {
             $message->subject('Correo de cliente');
-            $message->from('pretord@example.com', 'Tienda Pretord');
-            $message->to('badillo.oma@outlook.com');
+            $message->from('pretordfashion@pretord.com', 'Pretord Fashion');
+            $message->to('pretordfashion@pretord.com');
         });
 
         return redirect('/catalog');

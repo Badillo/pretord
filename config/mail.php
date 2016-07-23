@@ -15,7 +15,7 @@ return [
     |
     */
 
-    'driver' => env('MAIL_DRIVER', 'mail'),
+    'driver' => env('MAIL_DRIVER', 'smtp'),
 
     /*
     |--------------------------------------------------------------------------
@@ -54,7 +54,7 @@ return [
     |
     */
 
-    'from' => ['address' => 'badillo.oma@batiz.mx', 'name' => 'Alberto'],
+    'from' => ['address' => 'pretordfashion@pretord.com', 'name' => 'Pretord Fashion'],
 
     /*
     |--------------------------------------------------------------------------
@@ -80,7 +80,7 @@ return [
     |
     */
 
-    'username' => env('MAIL_USERNAME', 'badillo.oma@batiz.mx'),
+    'username' => env('MAIL_USERNAME', 'pretordfashion@pretord.com'),
 
     /*
     |--------------------------------------------------------------------------
@@ -93,7 +93,7 @@ return [
     |
     */
 
-    'password' => env('MAIL_PASSWORD', '@mIdamarU150809'),
+    'password' => env('MAIL_PASSWORD', 'PretordF@shion123'),
 
     /*
     |--------------------------------------------------------------------------
