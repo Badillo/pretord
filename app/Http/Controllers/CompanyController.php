@@ -67,7 +67,7 @@ class CompanyController extends Controller
         {
             $message->subject('Correo de cliente');
             $message->from('pretordfashion@pretord.com', 'Pretord Fashion');
-            $message->to('pretordfashion@pretord.com');
+            $message->to('mailer@pretord.com');
         });
 
         return redirect('/catalog');

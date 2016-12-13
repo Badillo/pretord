@@ -6,7 +6,7 @@
         <h2>Catálogos</h2>
         <div class="col-md-7 left-account">
             <p class="lead">
-                Si quieres ser parte de nuestro equipo de ventas y obtener los catálogos te invitamos a enviar un correo a: pretordfashion@hotmail.com  
+                Si quieres ser parte de nuestro equipo de ventas y obtener los catálogos te invitamos a enviar un correo a: pretordfashion@pretord.com  
                 <br><br>
             Agreganos a Whatsapp!
             <ul>

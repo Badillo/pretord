@@ -4,7 +4,7 @@
 <!--Header-->
 <div class="header-top">
     <div class="logo">
-        <a href="{{ URL::to('/')}}"><img src="{{ URL::to("img/page/logo.png") }}" alt="Logo Pretord"></a>
+        <a href="{{ URL::to('/')}}"><img width="260" src="{{ URL::to("img/page/logo.png") }}" alt="Logo Pretord"></a>
     </div>
     <div class="header-top-on">
         <a href="https://www.facebook.com/Calzado-Pretord-447486148713267" target="_blank">
