@@ -3,7 +3,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="keywords" content="Pretord" />
-        <title>Tienda PRETORD</title>
+        <title>Tienda Zapateria</title>
         {!! Html::style('css/bootstrap.css') !!}
         {!! Html::style('css/style.css') !!}
         {!! Html::style('css/megamenu.css') !!}
